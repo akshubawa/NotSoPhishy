@@ -45,9 +45,7 @@ if not is_valid_url(url):
     print("Invalid URL. Please provide a valid URL.")
 
 else :
-    if not is_accessible(url):
-        print("The website is not accessible or may be banned/private.")
-    else:
+
         def UsingIp(url):
             try:
                 ipaddress.ip_address(url)
