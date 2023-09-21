@@ -536,7 +536,7 @@ if __name__ == "__main__":
 
         columns = columns.reshape(1, -1)
 
-        with open("C:\\Users\\akshu\\Documents\\Phishing Website Detector\\Model\\classifier-model.pkl", 'rb') as f:
+        with open("C:\\Users\\akshu\\Desktop\\PHISHING\\classifier-model.pkl", 'rb') as f:
             model = pickle.load(f)
 
     # new_model = keras.models.load_model("C:\\Users\\akshu\\Desktop\\PHISHING\\nn.h5")
@@ -551,3 +551,6 @@ if __name__ == "__main__":
     print("Time Taken:",end-start)
 
 #http://dhlucrania.page.link/ua/
+#https://spot-clonee.netlify.app/#
+#https://lotto-india.com/
+#https://www.crunchbase.com/event/kbc-lottery-winner-2022-kbc-lottery-number-check-online-2022
