@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Phishing Result</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://kit.fontawesome.com/7f89a67ac3.js" crossorigin="anonymous"></script>
+    <style>
+        .content_part {
+            background: url("https://www.criminalip.io/images/main/main_visual__bg.png");
+            background-position: right 0 top -180px;
+            background-repeat: no-repeat;
+        }
+    </style>
+</head>
+<body>
+<div class="min-h-[100vh] w-[100vw] overflow-hidden">
+    <!-- logo div -->
+    <div class="flex h-[80px] items-center justify-between px-4 py-3 b">
+        <h1 class="font-bold tracking-widest uppercase sm:text-4xl text-2xl">Phishing</h1>
+        <div class="flex items-center gap-[15px]">
+            <button class="bg-[#ECF3F9] text-[#7B94C1] py-2 px-4 font-bold">
+                Get Extension
+            </button>
+        </div>
+    </div>
+
+    <!-- content part -->
+    <div class="content_part min-h-[calc(100vh-80px)] flex flex-col items-center px-3 justify-center">
+        <p class="md:text-4xl sm:text-3xl text-2xl font-semibold text-center w-[100%] sm:w-[80%] md:w-[70%]">
+            Phishing Result: {% if result == -1 %} Phishing {% else %} Not Phishing {% endif %}
+        </p>
+    </div>
+</div>
+</body>
+</html>

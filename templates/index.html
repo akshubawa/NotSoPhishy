@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Phishing Website</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://kit.fontawesome.com/7f89a67ac3.js" crossorigin="anonymous"></script>
+    <style>
+        .content_part {
+            background: url("https://www.criminalip.io/images/main/main_visual__bg.png");
+            background-position: right 0 top -180px;
+            background-repeat: no-repeat;
+        }
+    </style>
+</head>
+<body>
+<div class="min-h-[100vh] w-[100vw] overflow-hidden">
+    <!-- logo div -->
+    <div class="flex h-[80px] items-center justify-between px-4 py-3 b">
+        <h1 class="font-bold tracking-widest uppercase sm:text-4xl text-2xl">Phishing</h1>
+        <div class="flex items-center gap-[15px]">
+            <button class="bg-[#ECF3F9] text-[#7B94C1] py-2 px-4 font-bold">
+                Get Extension
+            </button>
+        </div>
+    </div>
+
+    <!-- content part -->
+    <div class="content_part min-h-[calc(100vh-80px)] flex flex-col items-center px-3 justify-center">
+        <p class="md:text-4xl sm:text-3xl text-2xl font-semibold text-center w-[100%] sm:w-[80%] md:w-[70%]">
+            Search for information of
+            <span class="text-[#2C57A6]">phishing website</span> connected to the
+            public Internet.
+        </p>
+
+        <!-- input part inside content part -->
+        <form id="urlForm" action="/analyze" method="POST" class="w-[100%] flex my-[30px]">
+            <div class="w-[95%] sm:w-[80%] md:w-[50%] mx-auto relative">
+                <input type="text" name="url" placeholder="Enter The Website URL" class="border-[3px] rounded-[20px] font-semibold text-xl px-2 border-[#2451A3] w-[100%] py-2">
+                <button type="submit" class="fa-solid fa-magnifying-glass absolute right-0 top-0 text-[#2451A3] text-3xl flex justify-center items-center h-[43px] w-[43px] m-[3px] cursor-pointer focus:bg-[#2451A3] active:bg-[#2451A3] rounded-[50%]"></button>
+            </div>
+        </form>
+
+        <!-- Placeholder for displaying the result -->
+        <p id="resultPlaceholder" class="md:text-4xl sm:text-3xl text-2xl font-semibold text-center w-[100%] sm:w-[80%] md:w-[70%]">
+            <!-- Result will go here -->
+        </p>
+    </div>
+</div>
+</body>
+</html>
+
