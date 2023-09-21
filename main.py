@@ -536,7 +536,7 @@ if __name__ == "__main__":
 
         columns = columns.reshape(1, -1)
 
-        with open("C:\\Users\\akshu\\Desktop\\PHISHING\\classifier-model.pkl", 'rb') as f:
+        with open("C:\\Users\\akshu\\Downloads\\PhishingWebsiteDetector-master\\PhishingWebsiteDetector-master\\Model\\classifier-model.pkl", 'rb') as f:
             model = pickle.load(f)
 
     # new_model = keras.models.load_model("C:\\Users\\akshu\\Desktop\\PHISHING\\nn.h5")
