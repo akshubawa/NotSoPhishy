@@ -9,7 +9,6 @@ from collections import Counter
 import itertools
 import re
 import googlesearch
-import matplotlib.pyplot as plt
 # import seaborn as sns
 from bs4 import BeautifulSoup
 import urllib
@@ -22,20 +21,6 @@ import time
 from dateutil.parser import parse as date_parse
 from urllib.parse import urlparse
 import pickle
-# import multiprocessing
-# from tensorflow import keras
-
-# urls = ['https://www.google.com/']
-
-# pool = multiprocessing.Pool(processes=4)
-#
-# features = {UsingIp,longUrl,shortUrl,symbol,redirecting,
-#             prefixSuffix,subDomains,check_https,domainRegLen,
-#             favicon,nonStdPort,httpsDomainURL,requestURL,anchorURL,
-#             linksInScriptTags,serverFormHandler,infoEmail,abnormalURL,
-#             websiteForwarding,statusBarCust,disableRightClick,usingPopupWindow,
-#             iframeRedirection,ageofDomain,dnsRecording,websiteTraffic,pageRank,
-#             googleIndex,linksPointingToPage,statsReport}
 
 class PhishingChecker:
     def __init__(self, url, domain, response):
@@ -191,8 +176,6 @@ class PhishingChecker:
     # HTTPSDomainURL = httpsDomainURL(url)
 
     def requestURL(self):
-        # domain = urlparse(self.url).netloc
-        # response = requests.get(self.url)
         soup = BeautifulSoup(self.response.text, 'html.parser')
         try:
             for img in soup.find_all('img', src=True):
@@ -230,7 +213,7 @@ class PhishingChecker:
                 return 0
         except:
             return -1
-    # RequestURL = requestURL(url)
+            # RequestURL = requestURL(url)
 
     def anchorURL(self):
         # domain = urlparse(self.url).netloc
@@ -408,6 +391,7 @@ class PhishingChecker:
             if age >= 6:
                 return 1
             return -1
+
         except:
             return -1
     # AgeofDomain = ageofDomain(url)
@@ -447,7 +431,7 @@ class PhishingChecker:
     def pageRank(self):
         # domain = urlparse(self.url).netloc
         try:
-            prank_checker_response = requests.post("https://www.checkpagerank.net/index.php", {"name": self.domain})
+            rank_checker_response = requests.post("https://www.checkpagerank.net/index.php", {"name": self.domain})
 
             global_rank = int(re.findall(r"Global Rank: ([0-9]+)", rank_checker_response.text)[0])
             if global_rank > 0 and global_rank < 100000:
@@ -459,7 +443,7 @@ class PhishingChecker:
 
     def googleIndex(self):
         try:
-            site = search(self.url, 5)
+            site = re.search(self.url, 5)
             if site:
                 return 1
             else:
@@ -506,18 +490,10 @@ class PhishingChecker:
             return 1
     # StatsReport = statsReport(url)
 
-# columns =np.array([ UsingIP, LongURL, ShortURL, Symbol, Redirecting,
-# PrefixSuffix, SubDomains, HTTPS, DomainRegLen, Favicon,
-# NonStdPort, HTTPSDomainURL, RequestURL, AnchorURL,
-# LinksInScriptTags, ServerFormHandler, InfoEmail, AbnormalURL,
-# WebsiteForwarding, StatusBarCust, DisableRightClick,
-# UsingPopupWindow, IframeRedirection, AgeofDomain,
-# DNSRecording, WebsiteTraffic, PageRank, GoogleIndex,
-# LinksPointingToPage, StatsReport])
-
 if __name__ == "__main__":
     url = input("Enter URL: ")
     start = time.time()
+    reasons = []
     checker = PhishingChecker(url, domain=urlparse(url).netloc, response = requests.get(url))
 
     if not checker.is_valid_url() or not checker.is_accessible():
@@ -534,23 +510,56 @@ if __name__ == "__main__":
                             checker.ageofDomain(), checker.dnsRecording(), checker.websiteTraffic(), checker.pageRank(),
                             checker.googleIndex(), checker.linksPointingToPage(), checker.statsReport()])
 
+        reasons = np.array([
+            "This URL is using IP Address instead of a domain name.",
+            "This URL is longer and more complex.",
+            "This URL is a shortened link. It can hide the actual destination.",
+            "This URL has '@' symbol which is an identification of a phishing website.",
+            "This URL uses redirection which may hide the true destination of the link.",
+            "This URL has prefix or suffix added to the domain name.",
+            "This URL uses an excessive number of sub-domains.",
+            "This URL doesn't use HTTPS for secure communication.",
+            "This URL is newly registered.",
+            "This URL doesn't have the website's Favicon.",
+            "This URL uses Non-Standard Ports.",
+            "The domain name in the URL doesn't match the domain name in the HTTPS certificate.",
+            "This URL loads content from different domains.",
+            "There are links in the HTML anchor tags pointing to external domains.",
+            "This website has links in script tags.",
+            "The website contains a server form handler.",
+            "The URL has email addresses in it.",
+            "This URL deviates from typical URL structures.",
+            "This website forwards users to a different URL upon access.",
+            "This website customizes or disables the browser's status bar.",
+            "This website disables the right-click context menu.",
+            "This website uses pop-up windows.",
+            "The website uses iframes in it.",
+            "The domain is newly registered.",
+            "DNS records are not properly configured for the domain.",
+            "This website has low traffic.",
+            "The page-rank of the website is not so good.",
+            "The website is not indexed by Google.",
+            "The website has a huge number of external links pointing to the website.",
+            "The website doesn't provide a statistical report."
+        ])
+
         columns = columns.reshape(1, -1)
 
         with open("C:\\Users\\akshu\\Downloads\\PhishingWebsiteDetector-master\\PhishingWebsiteDetector-master\\Model\\classifier-model.pkl", 'rb') as f:
             model = pickle.load(f)
 
-    # new_model = keras.models.load_model("C:\\Users\\akshu\\Desktop\\PHISHING\\nn.h5")
-    # prediction = new_model.predict(columns)
-    # result = prediction[0]
-
         prediction = model.predict(columns)
         result = prediction[0]
 
-    print("Phishing prediction:", result)
+    if result == 1:
+        print("This website is safe to use.")
+    else:
+        print("The website may be phishing due to following reason:")
+        for i in range(0,len(columns[0])):
+            if columns[0][i] == -1:
+                print(reasons[i])
     end = time.time()
     print("Time Taken:",end-start)
 
-#http://dhlucrania.page.link/ua/
-#https://spot-clonee.netlify.app/#
 #https://lotto-india.com/
-#https://www.crunchbase.com/event/kbc-lottery-winner-2022-kbc-lottery-number-check-online-2022
+
