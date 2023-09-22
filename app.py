@@ -4,7 +4,8 @@ from flask import Flask, request, render_template
 import numpy as np
 import requests
 import main as m
-app = Flask(__name__,static_folder='C:\\Users\\akshu\\Downloads\\PhishingWebsiteDetector-master\\PhishingWebsiteDetector-master\\UI Part',template_folder='C:\\Users\\akshu\\Downloads\\PhishingWebsiteDetector-master\\PhishingWebsiteDetector-master\\templates')
+import os
+app = Flask(__name__,static_folder='UI Part',template_folder='templates')
 
 def analyze_url(url):
     checker = m.PhishingChecker(url, domain=urlparse(url).netloc, response = requests.get(url))
@@ -25,7 +26,7 @@ def analyze_url(url):
 
         columns = columns.reshape(1, -1)
 
-        with open("C:\\Users\\akshu\\Downloads\\PhishingWebsiteDetector-master\\PhishingWebsiteDetector-master\\Model\\classifier-model.pkl", 'rb') as f:
+        with open("Model\\classifier-model.pkl", 'rb') as f:
             model = pickle.load(f)
 
         prediction = model.predict(columns)
@@ -43,4 +44,4 @@ def analyze():
     return render_template("result.html", result=result)
 
 if __name__ == "__main__":
-    app.run(debug=False,host='0.0.0.0')
+    app.run(debug=True,host='0.0.0.0',port=int(os.environ.get('PORT', 8080)))
