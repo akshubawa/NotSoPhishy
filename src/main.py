@@ -494,11 +494,10 @@ if __name__ == "__main__":
     url = input("Enter URL: ")
     start = time.time()
     reasons = []
+    columns = []
     checker = PhishingChecker(url, domain=urlparse(url).netloc, response = requests.get(url))
 
-    if not checker.is_valid_url() or not checker.is_accessible():
-        result = -1
-    else:
+    if checker.is_valid_url() or checker.is_accessible():
         columns = np.array([checker.UsingIp(), checker.longUrl(), checker.shortUrl(), checker.symbol(),
                             checker.redirecting(), checker.prefixSuffix(), checker.subDomains(), checker.check_https(),
                             checker.domainRegLen(), checker.favicon(), checker.nonStdPort(), checker.httpsDomainURL(),
@@ -509,6 +508,8 @@ if __name__ == "__main__":
                             checker.disableRightClick(), checker.usingPopupWindow(), checker.iframeRedirection(),
                             checker.ageofDomain(), checker.dnsRecording(), checker.websiteTraffic(), checker.pageRank(),
                             checker.googleIndex(), checker.linksPointingToPage(), checker.statsReport()])
+
+        columns = columns.reshape(1, -1)
 
         reasons = np.array([
             "This URL is using IP Address instead of a domain name.",
@@ -543,21 +544,20 @@ if __name__ == "__main__":
             "The website doesn't provide a statistical report."
         ])
 
-        columns = columns.reshape(1, -1)
-
         with open("C:\\Users\\akshu\\Downloads\\PhishingWebsiteDetector-master\\PhishingWebsiteDetector-master\\Model\\classifier-model.pkl", 'rb') as f:
             model = pickle.load(f)
 
         prediction = model.predict(columns)
         result = prediction[0]
 
-    if result == 1:
-        print("This website is safe to use.")
-    else:
+    if result == -1:
         print("The website may be phishing due to following reason:")
-        for i in range(0,len(columns[0])):
+        for i in range(len(columns[0])):
             if columns[0][i] == -1:
                 print(reasons[i])
+
+    else:
+        print("This website is safe to use.")
     end = time.time()
     print("Time Taken:",end-start)
 
