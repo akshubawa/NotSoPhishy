@@ -6,19 +6,33 @@
     <title>Phishing Website</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="https://kit.fontawesome.com/7f89a67ac3.js" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.10.1/gsap.min.js"></script>
+
+
     <style>
-        .content_part {
+        .main{
             background: url("https://www.criminalip.io/images/main/main_visual__bg.png");
-            background-position: right 0 top -180px;
             background-repeat: no-repeat;
+            background-position: right 0px top 0px  ;
+        }
+        a:hover{
+            text-decoration:none;
+            margin-top: -15px;
+            box-shadow: 0px 0px 50px 5px #000;
         }
     </style>
 </head>
 <body>
-<div class="min-h-[100vh] w-[100vw] overflow-hidden">
+<div class="min-h-[100vh] w-[100vw] overflow-hidden main ">
+
     <!-- logo div -->
-    <div class="flex h-[80px] items-center justify-between px-4 py-3 b">
-        <h1 class="font-bold tracking-widest uppercase sm:text-4xl text-2xl">Phishing</h1>
+    <div class="flex h-[80px] items-center justify-between px-4 py-3">
+        <div class="flex items-center gap-[10px] ">
+            <div>
+                <img class="w-[50px] h-[50px] rounded-full" src="../assets/our_logo.jpg" alt="logo image"/>
+            </div>
+            <h1 class="font-bold tracking-widest uppercase sm:text-4xl text-2xl">Phishing</h1>
+        </div>
         <div class="flex items-center gap-[15px]">
             <button class="bg-[#ECF3F9] text-[#7B94C1] py-2 px-4 font-bold">
                 Get Extension
@@ -27,8 +41,8 @@
     </div>
 
     <!-- content part -->
-    <div class="content_part min-h-[calc(100vh-80px)] flex flex-col items-center px-3 justify-center">
-        <p class="md:text-4xl sm:text-3xl text-2xl font-semibold text-center w-[100%] sm:w-[80%] md:w-[70%]">
+    <div class="content_part min-h-[calc(80vh-80px)] flex flex-col items-center px-3 justify-center">
+        <p class="heading_part md:text-4xl sm:text-3xl text-2xl font-semibold text-center w-[100%] sm:w-[80%] md:w-[70%]">
             Search for information of
             <span class="text-[#2C57A6]">phishing website</span> connected to the
             public Internet.
@@ -47,7 +61,117 @@
             <!-- Result will go here -->
         </p>
     </div>
+
+<!--     options part    -->
+
+    <div class="grid grid-cols-1 sm:gap-[40px] sm:grid-cols-3 w-[80%] mb-[80px] place-items-center  mx-auto">
+
+        <a href="identifyphisingwebsite.html" class="option_one duration-300 rounded-lg mb-[20px]">
+            <div class="flex flex-col max-w-[350px] rounded-lg overflow-hidden">
+            <div >
+                <img src="../assets/image_one.jpg" alt="image_one"/>
+            </div>
+            <div class="bg-black text-white flex items-center justify-center py-1">
+                <p>
+                Identify Phishing Websites
+            </p>
+            </div>
+        </div>
+        </a>
+
+        <a href="phishingscams.html" class="option_two duration-300 rounded-lg mb-[20px]" >
+            <div class="flex flex-col max-w-[350px] rounded-lg overflow-hidden">
+            <div >
+                <img src="../assets/image_two.jpg" alt="image_one"/>
+            </div>
+            <div class="bg-black text-white flex items-center justify-center py-1">
+                <p>
+                Phishing Scams
+            </p>
+            </div>
+        </div>
+        </a>
+
+        <a href="phishingwebsiteexample.html" class="option_three duration-300 rounded-lg mb-[20px]">
+            <div class="flex flex-col max-w-[350px] rounded-lg overflow-hidden">
+            <div >
+                <img src="../assets/image_three.jpg" alt="image_one"/>
+            </div>
+            <div class="bg-black text-white flex items-center justify-center py-1">
+                <p>
+                Phishing Website Examples
+            </p>
+            </div>
+        </div>
+        </a>
+
+    </div>
+
+
+    <!-- footer part -->
+
+    <div class="h-[100px] bg-black text-white font-bold flex justify-center items-center">
+        © 2023 Tech Fusion || CopyRight Reserved
+    </div>
+
 </div>
+
+
+<script>
+    const heading_part = document.querySelector('.heading_part');
+    const urlForm = document.getElementById('urlForm');
+    const option_one = document.querySelector('.option_one');
+    const option_two = document.querySelector('.option_two');
+    const option_three = document.querySelector('.option_three');
+    gsap.fromTo(heading_part,{
+        y:-100,
+        opacity:0
+    },{
+        y:0,
+        opacity:1,
+        duration:1,
+        ease:'power2.inOut'
+    });
+    gsap.fromTo(urlForm,{
+        y:-100,
+        opacity:0
+    },{
+        y:0,
+        opacity:1,
+        duration:1,
+        ease:'power2.inOut'
+    })
+    gsap.fromTo(option_one,{
+        y:100,
+        opacity:0
+    },{
+        y:0,
+        opacity:1,
+        delay:1,
+        duration:0.75,
+        ease:'power2.inOut'
+    });
+    gsap.fromTo(option_two,{
+        y:100,
+        opacity:0
+    },{
+        y:0,
+        opacity:1,
+        delay:1.5,
+        duration:0.75,
+        ease:'power2.inOut'
+    });
+    gsap.fromTo(option_three,{
+        y:100,
+        opacity:0
+    },{
+        y:0,
+        opacity:1,
+        delay:2,
+        duration:0.75,
+        ease:'power2.inOut'
+    });
+</script>
 </body>
 </html>
 
