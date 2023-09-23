@@ -1,12 +1,13 @@
 import pickle
 from urllib.parse import urlparse
 from flask import Flask, request, render_template
+from flask_ngrok import run_with_ngrok
 import numpy as np
 import requests
 import main as m
 
 app = Flask(__name__, static_folder='C:\\Users\\akshu\\Downloads\\PhishingWebsiteDetector-master\\PhishingWebsiteDetector-master\\UI Part', template_folder='C:\\Users\\akshu\\Downloads\\PhishingWebsiteDetector-master\\PhishingWebsiteDetector-master\\templates')
-
+run_with_ngrok(app)
 def analyze_url(url):
     checker = m.PhishingChecker(url, domain=urlparse(url).netloc, response=requests.get(url))
 
@@ -43,5 +44,5 @@ def analyze():
     result = analyze_url(url)
     return render_template("result.html", result=result)
 
-# if __name__ == "__main__":
-#     app.run(debug=False)
+if __name__ == "__main__":
+    app.run()
