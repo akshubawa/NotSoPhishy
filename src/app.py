@@ -6,8 +6,13 @@ import numpy as np
 import requests
 import main as m
 
+<<<<<<< HEAD
 app = Flask(__name__, static_folder='C:\\Users\\akshu\\Downloads\\PhishingWebsiteDetector-master\\PhishingWebsiteDetector-master\\UI Part', template_folder='C:\\Users\\akshu\\Downloads\\PhishingWebsiteDetector-master\\PhishingWebsiteDetector-master\\templates')
 run_with_ngrok(app)
+=======
+app = Flask(__name__, static_folder='akshubawa/PhishingWebsiteDetector/templates', template_folder='akshubawa/PhishingWebsiteDetector/templates')
+
+>>>>>>> 7887ec406f1c8545dcba18177e79fec5b35ae63c
 def analyze_url(url):
     checker = m.PhishingChecker(url, domain=urlparse(url).netloc, response=requests.get(url))
 
@@ -27,7 +32,7 @@ def analyze_url(url):
 
         columns = columns.reshape(1, -1)
 
-    with open("C:\\Users\\akshu\\Downloads\\PhishingWebsiteDetector-master\\PhishingWebsiteDetector-master\\Model\\classifier-model.pkl", 'rb') as f:
+    with open("akshubawa/PhishingWebsiteDetector/Model/classifier-model.pkl", 'rb') as f:
             model = pickle.load(f)
 
     prediction = model.predict(columns)
