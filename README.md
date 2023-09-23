@@ -1,5 +1,5 @@
 # PhishingWebsiteDetector
-## Intro
+## Introduction
 Phishing attacks are the most common cyber-attacks nowadays. It’s the user that makes a device vulnerable to attacks. Social engineering is more effective than any hacking method because it relies on human error rather than finding and exploiting vulnerabilities in computer systems. ​
 
 Our approach towards solving this problem is by providing humans with tools to help them make better decisions by employing systems that can recognize patterns which would be too complex for humans to identify.​
