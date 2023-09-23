@@ -85,10 +85,10 @@ class PhishingChecker:
     def prefixSuffix(self):
         # domain = urlparse(self.url).netloc
         try:
-            match = re.findall('\-', self.domain)
-            if match:
+            if '-' in self.domain:
                 return -1
-            return 1
+            else:
+                return 1
         except:
             return -1
     # PrefixSuffix = prefixSuffix(url)
@@ -411,8 +411,7 @@ class PhishingChecker:
 
     def websiteTraffic(self):
         try:
-            rank = \
-            BeautifulSoup(urllib.request.urlopen("http://data.alexa.com/data?cli=10&dat=s&url=" + self.url).read(), "xml").find(
+            rank = BeautifulSoup(urllib.request.urlopen("http://data.alexa.com/data?cli=10&dat=s&url=" + self.url).read(), "xml").find(
                 "REACH")['RANK']
             if (int(rank) < 100000):
                 return 1
@@ -528,7 +527,7 @@ if __name__ == "__main__":
             "This URL deviates from typical URL structures.",
             "This website forwards users to a different URL upon access.",
             "This website customizes or disables the browser's status bar.",
-            "This website disables the right-click context menu.",
+            "This website doesn't disable the right-click context menu.",
             "This website uses pop-up windows.",
             "The website uses iframes in it.",
             "The domain is newly registered.",

@@ -43,5 +43,5 @@ def analyze():
     result = analyze_url(url)
     return render_template("result.html", result=result)
 
-if __name__ == "__main__":
-    app.run(debug=False)
+# if __name__ == "__main__":
+#     app.run(debug=False)

@@ -1,0 +1,6 @@
+Flask
+Gunicorn
+whois
+googlesearch-python
+scikit-learn==0.22.2
+
