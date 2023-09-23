@@ -2,23 +2,15 @@ import warnings
 warnings.filterwarnings("ignore")
 
 import numpy as np
-from scipy import stats
-import math
-import random
-from collections import Counter
-import itertools
 import re
-import googlesearch
-# import seaborn as sns
 from bs4 import BeautifulSoup
 import urllib
 import ipaddress
 import socket
 import requests
 import whois
-from datetime import date, datetime
+from datetime import date
 import time
-from dateutil.parser import parse as date_parse
 from urllib.parse import urlparse
 import pickle
 
@@ -107,7 +99,8 @@ class PhishingChecker:
             return 1
         elif dot_count == 2:
             return 0
-        return -1
+        else:
+            return -1
     # SubDomains = subDomains(url)
 
     def check_https(self):
@@ -491,7 +484,10 @@ class PhishingChecker:
     # StatsReport = statsReport(url)
 
 if __name__ == "__main__":
-    url = input("Enter URL: ")
+    base_url = input("Enter URL: ")
+    response = requests.get(base_url, allow_redirects=True)
+    url = response.url
+
     start = time.time()
     reasons = []
     columns = []
@@ -551,7 +547,7 @@ if __name__ == "__main__":
         result = prediction[0]
 
     if result == -1:
-        print("The website may be phishing due to following reason:")
+        print("The website may be phishing.\nThis could be due to the following reason:")
         for i in range(len(columns[0])):
             if columns[0][i] == -1:
                 print(reasons[i])
@@ -559,7 +555,8 @@ if __name__ == "__main__":
     else:
         print("This website is safe to use.")
     end = time.time()
-    print("Time Taken:",end-start)
+    # print("Time Taken:",end-start)
 
 #https://lotto-india.com/
+#http://login-amazon-account.com/
 
