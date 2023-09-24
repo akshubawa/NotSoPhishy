@@ -546,7 +546,7 @@ if __name__ == "__main__":
             "The website doesn't provide a statistical report."
         ])
 
-        with open("C:\\Users\\amanc\\OneDrive\\Desktop\\PhishingWebsiteDetector\\Model\\classifier-model.pkl", 'rb') as f:
+        with open("C:\\Users\\akshu\\Documents\\Phishing Website Detector\\Model\\classifier-model.pkl", 'rb') as f:
             model = pickle.load(f)
 
         prediction = model.predict(columns)
