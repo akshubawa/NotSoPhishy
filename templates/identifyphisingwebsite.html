@@ -15,7 +15,7 @@
 <div class="flex h-[80px] items-center justify-between px-4 py-3">
         <div class="flex items-center gap-[10px] ">
             <div>
-                <img class="w-[50px] h-[50px] rounded-full" src="../static/our_logo.jpg" alt="logo image"/>
+                <img class="w-[50px] h-[50px]" src="../static/logo-transparent.png" alt="logo image"/>
             </div>
             <h1 class="font-bold tracking-widest uppercase sm:text-4xl text-2xl">Not So Phishy</h1>
         </div>
@@ -28,7 +28,7 @@
 <!-- content part -->
 <div class="grid grid-cols-1 place-items-center mt-[40px] sm:mt-0  sm:grid-cols-2 items-center px-[30px] ">
 
-    <div class="flex flex-col gap-[30px] justify-center items-center">
+    <div class="flex flex-col gap-[30px] justify-center items-center main_part_one">
         <h1 class="text-[1.25rem] sm:w-[85%] w-[95%]">
             <span class="text-[1.5rem] tracking-wider font-bold">Preventing</span> phishing is crucial to safeguard your personal information and sensitive data. Here are general ways to help prevent falling victim to phishing attempts
         </h1>
@@ -46,7 +46,7 @@
 
     </div>
 
-    <div class="grid place-items-center py-[50px]">
+    <div class="grid place-items-center py-[50px] main_part_two">
         <img src="../static/identify_phishing_website.jpg" class="rounded-lg sm:w-[80%] w-[95%]" alt="identify images"/>
     </div>
 
@@ -113,6 +113,35 @@ Refrain from sharing sensitive information like passwords, credit card numbers, 
     document.getElementById("navigateButton").addEventListener("click", function() {
     window.location.href = "{{ url_for('index') }}";
     });
+    const main_part_one = document.querySelector(".main_part_one");
+    const main_part_two = document.querySelector(".main_part_two");
+    gsap.fromTo(
+    main_part_one, // Target element
+    {
+        opacity: 0,   // Starting opacity (hidden)
+        x: -100,      // Starting horizontal position (left of the viewport) Starting rotation (counterclockwise)
+    },
+    {
+        opacity: 1,   // Ending opacity (fully visible)
+        x: 0, // Ending rotation (no rotation)
+        duration: 1,  // Animation duration in seconds
+        ease: 'elastic.out(1, 0.3)' // Elastic easing function with a spring effect
+    }
+);
+
+    gsap.fromTo(
+    main_part_two, // Target element
+    {
+        opacity: 0,   // Starting opacity (hidden)
+        x: 100,      // Starting horizontal position (left of the viewport) Starting rotation (counterclockwise)
+    },
+    {
+        opacity: 1,   // Ending opacity (fully visible)
+        x: 0, // Ending rotation (no rotation)
+        duration: 1,  // Animation duration in seconds
+        ease: 'elastic.out(1, 0.3)' // Elastic easing function with a spring effect
+    }
+);
 </script>
 
 

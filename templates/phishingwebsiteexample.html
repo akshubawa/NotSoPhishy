@@ -8,18 +8,20 @@
     <title>Phishing Scams</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="https://kit.fontawesome.com/7f89a67ac3.js" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.10.1/gsap.min.js"></script>
 </head>
 
 <body>
-    <div class="flex h-[80px] items-center justify-between px-4 py-3">
-        <div class="flex items-center gap-[10px] ">
+    <div class="flex h-[80px] items-center justify-between sm:px-4 px-3 py-3">
+        <div class="flex items-center sm:gap-[10px] gap-[5px] ">
             <div>
-                <img class="w-[50px] h-[50px] rounded-full" src="../static/our_logo.jpg" alt="logo image" />
+                <img class="w-[50px] h-[50px]" src="../static/logo-transparent.png" alt="logo image"/>
+
             </div>
-            <h1 class="font-bold tracking-widest uppercase sm:text-4xl text-2xl">Not So Phishy</h1>
+            <h1 class="font-bold tracking-widest uppercase sm:text-4xl sm:text-2xl text-[1.05rem] ">Not So Phishy</h1>
         </div>
         <div class="flex items-center gap-[15px]">
-            <button class="bg-[#ECF3F9] text-[#7B94C1] py-2 px-4 font-bold">
+            <button class="bg-[#ECF3F9] text-[#7B94C1] py-2 sm:px-4 px-2 font-bold">
                 Get Extension
             </button>
         </div>
@@ -28,11 +30,11 @@
 
     <div class="grid grid-cols-1  place-items-center mt-[20px] sm:mt-0  sm:grid-cols-2 items-center px-[30px] ">
 
-        <div class="grid place-items-center py-[50px]">
+        <div class="image_one grid place-items-center py-[50px]">
             <img src="../static/scam_image.jpg" class="rounded-lg sm:w-[80%] w-[95%]" alt="identify images" />
         </div>
 
-        <div class="flex flex-col gap-[30px] justify-center items-center">
+        <div class="heading_part flex flex-col gap-[30px] justify-center items-center">
             <h1 class="text-[1.25rem] sm:w-[85%] w-[95%]">
                 <span class="text-[1.5rem] tracking-wider font-bold">Unmasking</span> Online Threats: The Definitive
                 List of Phishing Websites
@@ -62,7 +64,7 @@
 
     <div class="px-10 flex mt-[20px] flex-col gap-[20px]">
         <div
-            class="relative border-[2px] border-[#ECF3F9] rounded-lg hover:shadow-lg cursor-pointer duration-300 sm:min-w-[250px]  sm:max-w-[80%] ">
+            class="url_one relative border-[2px] border-[#ECF3F9] rounded-lg hover:shadow-lg cursor-pointer duration-300 sm:min-w-[250px]  sm:max-w-[80%] ">
             <p class="absolute top-[10px] font-bold text-white rounded-full left-[-25px] px-5 py-2 bg-[#FFB000] ">1</p>
             <div class="m-[30px]">
                 www.abc.com
@@ -72,7 +74,7 @@
 
 
         <div
-            class="relative border-[2px] border-[#ECF3F9] rounded-lg hover:shadow-lg cursor-pointer duration-300 sm:min-w-[250px]  sm:max-w-[80%] ">
+            class="url_two relative border-[2px] border-[#ECF3F9] rounded-lg hover:shadow-lg cursor-pointer duration-300 sm:min-w-[250px]  sm:max-w-[80%] ">
             <p class="absolute top-[10px] font-bold text-white rounded-full left-[-25px] px-5 py-2 bg-[#FFB000] ">2</p>
             <div class="m-[30px]">
                 www.abc.com
@@ -80,7 +82,7 @@
         </div>
 
         <div
-            class="relative border-[2px] border-[#ECF3F9] rounded-lg hover:shadow-lg cursor-pointer duration-300 sm:min-w-[250px]  sm:max-w-[80%] ">
+            class="url_three relative border-[2px] border-[#ECF3F9] rounded-lg hover:shadow-lg cursor-pointer duration-300 sm:min-w-[250px]  sm:max-w-[80%] ">
             <p class="absolute top-[10px] font-bold text-white rounded-full left-[-25px] px-5 py-2 bg-[#FFB000] ">3</p>
             <div class="m-[30px]">
                 www.abc.com
@@ -88,7 +90,7 @@
         </div>
 
         <div
-            class="relative border-[2px] border-[#ECF3F9] rounded-lg hover:shadow-lg cursor-pointer duration-300 sm:min-w-[250px]  sm:max-w-[80%] ">
+            class="url_four relative border-[2px] border-[#ECF3F9] rounded-lg hover:shadow-lg cursor-pointer duration-300 sm:min-w-[250px]  sm:max-w-[80%] ">
             <p class="absolute top-[10px] font-bold text-white rounded-full left-[-25px] px-5 py-2 bg-[#FFB000] ">4</p>
             <div class="m-[30px]">
                 www.abc.com
@@ -105,6 +107,67 @@
     <script>
         document.getElementById("navigateButton").addEventListener("click", function () {
             window.location.href = "{{ url_for('index') }}";
+        });
+        const image_one = document.querySelector(".image_one");
+        const heading_part = document.querySelector('.heading_part');
+        const url_one = document.querySelector('.url_one');
+        const  url_two = document.querySelector('.url_two');
+        const  url_three = document.querySelector('.url_three');
+        const  url_four = document.querySelector('.url_four');
+        gsap.fromTo(image_one,{
+            opacity:0
+        },{
+            opacity: 1,
+            duration:1.5,
+            ease:'power1.inOut'
+        });
+        gsap.fromTo(heading_part,{
+            opacity:0,
+            y:-100,
+        },{
+            opacity:1,
+            y:0,
+            duration:0.5,
+            ease:'power1.inOut'
+        });
+        gsap.fromTo(url_one,{
+            opacity:0,
+            y:-100,
+        },{
+            opacity:1,
+            y:0,
+            duration:0.5,
+            ease:'power1.inOut'
+        });
+        gsap.fromTo(url_two,{
+            opacity:0,
+            y:-100,
+        },{
+            opacity:1,
+            y:0,
+            duration:0.5,
+            delay:0.2,
+            ease:'power1.inOut'
+        });
+        gsap.fromTo(url_three,{
+            opacity:0,
+            y:-100,
+        },{
+            opacity:1,
+            y:0,
+            duration:0.5,
+            delay:0.4,
+            ease:'power1.inOut'
+        });
+        gsap.fromTo(url_four,{
+            opacity:0,
+            y:-100,
+        },{
+            opacity:1,
+            y:0,
+            duration:0.5,
+            delay:0.6,
+            ease:'power1.inOut'
         });
     </script>
 

@@ -5,7 +5,7 @@ from flask import Flask, request, render_template
 import numpy as np
 import requests
 import main as m
-app = Flask(__name__,static_folder='C:\\Users\\amanc\\OneDrive\\Desktop\\PhishingWebsiteDetector\\static',template_folder='C:\\Users\\amanc\\OneDrive\\Desktop\\PhishingWebsiteDetector\\templates')
+app = Flask(__name__,static_folder='C:\\Users\\akshu\Documents\\Phishing Website Detector\\static',template_folder='C:\\Users\\akshu\\Documents\\Phishing Website Detector\\templates')
 
 def analyze_url(url):
     response = requests.get(url, allow_redirects=True)
@@ -60,7 +60,7 @@ def analyze_url(url):
             "The website doesn't provide a statistical report."
         ])
 
-        with open("C:\\Users\\amanc\\OneDrive\\Desktop\\PhishingWebsiteDetector\\\Model\\classifier-model.pkl", 'rb') as f:
+        with open("C:\\Users\\akshu\\Documents\\Phishing Website Detector\\Model\\classifier-model.pkl", 'rb') as f:
             model = pickle.load(f)
 
         prediction = model.predict(columns)
