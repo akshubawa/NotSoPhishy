@@ -75,3 +75,11 @@ Follow these steps to run the **Not So Phishy** project:
 Now, you can use the provided features to assess URLs for potential phishing threats and access information about reported phishing attacks worldwide.
 
 Stay vigilant against phishing attacks with **Not So Phishy**! If you have any questions or need assistance, please don't hesitate to reach out.
+
+# Screenshots
+<img src="./assets/Screenshot 0.png">
+<img src="./assets/Screenshot 1.png">
+<img src="./assets/Screenshot 2.png">
+<img src="./assets/Screenshot 3.png">
+<img src="./assets/Screenshot 4.png">
+<img src="./assets/Screenshot 5.png">
