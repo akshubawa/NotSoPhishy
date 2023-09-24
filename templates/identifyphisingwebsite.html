@@ -15,7 +15,7 @@
 <div class="flex h-[80px] items-center justify-between px-4 py-3">
         <div class="flex items-center gap-[10px] ">
             <div>
-                <img class="w-[50px] h-[50px] rounded-full" src="../assets/our_logo.jpg" alt="logo image"/>
+                <img class="w-[50px] h-[50px] rounded-full" src="../static/our_logo.jpg" alt="logo image"/>
             </div>
             <h1 class="font-bold tracking-widest uppercase sm:text-4xl text-2xl">Phishing</h1>
         </div>
@@ -38,7 +38,7 @@
         </h1>
 
         <div class="flex items-start w-[85%]">
-            <button class="border-[#ECF3F9] hover:bg-[#ECF3F9] duration-300 text-[#7B94C1] border-[1px] rounded-lg w-[200px] py-2 px-4 font-bold">
+            <button id="navigateButton" class="border-[#ECF3F9] hover:bg-[#ECF3F9] duration-300 text-[#7B94C1] border-[1px] rounded-lg w-[200px] py-2 px-4 font-bold">
                 Check your URL
             </button>
         </div>
@@ -47,7 +47,7 @@
     </div>
 
     <div class="grid place-items-center py-[50px]">
-        <img src="../assets/identify_phishing_website.jpg" class="rounded-lg sm:w-[80%] w-[95%]" alt="identify images"/>
+        <img src="../static/identify_phishing_website.jpg" class="rounded-lg sm:w-[80%] w-[95%]" alt="identify images"/>
     </div>
 
 </div>
@@ -109,7 +109,11 @@ Refrain from sharing sensitive information like passwords, credit card numbers, 
         © 2023 Tech Fusion || CopyRight Reserved
     </div>
 
-
+<script>
+    document.getElementById("navigateButton").addEventListener("click", function() {
+    window.location.href = "{{ url_for('index') }}";
+    });
+</script>
 
 
 </body>

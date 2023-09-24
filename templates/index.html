@@ -29,7 +29,7 @@
     <div class="flex h-[80px] items-center justify-between px-4 py-3">
         <div class="flex items-center gap-[10px] ">
             <div>
-                <img class="w-[50px] h-[50px] rounded-full" src="../assets/our_logo.jpg" alt="logo image"/>
+                <img class="w-[50px] h-[50px] rounded-full" src="../static/our_logo.jpg" alt="logo image"/>
             </div>
             <h1 class="font-bold tracking-widest uppercase sm:text-4xl text-2xl">Phishing</h1>
         </div>
@@ -66,10 +66,10 @@
 
     <div class="grid grid-cols-1 sm:gap-[40px] sm:grid-cols-3 w-[80%] mb-[80px] place-items-center  mx-auto">
 
-        <a href="identifyphisingwebsite.html" class="option_one duration-300 rounded-lg mb-[20px]">
+        <a href="{{ url_for('identify_phishing_website') }}" class="option_one duration-300 rounded-lg mb-[20px]">
             <div class="flex flex-col max-w-[350px] rounded-lg overflow-hidden">
             <div >
-                <img src="../assets/image_one.jpg" alt="image_one"/>
+                <img src="../static/image_one.jpg" alt="image_one"/>
             </div>
             <div class="bg-black text-white flex items-center justify-center py-1">
                 <p>
@@ -79,10 +79,10 @@
         </div>
         </a>
 
-        <a href="phishingscams.html" class="option_two duration-300 rounded-lg mb-[20px]" >
+        <a href="{{ url_for('phishing_scams') }}" class="option_two duration-300 rounded-lg mb-[20px]" >
             <div class="flex flex-col max-w-[350px] rounded-lg overflow-hidden">
             <div >
-                <img src="../assets/image_two.jpg" alt="image_one"/>
+                <img src="../static/image_two.jpg" alt="image_one"/>
             </div>
             <div class="bg-black text-white flex items-center justify-center py-1">
                 <p>
@@ -92,10 +92,10 @@
         </div>
         </a>
 
-        <a href="phishingwebsiteexample.html" class="option_three duration-300 rounded-lg mb-[20px]">
+        <a href="{{ url_for('phishing_website_examples') }}" class="option_three duration-300 rounded-lg mb-[20px]">
             <div class="flex flex-col max-w-[350px] rounded-lg overflow-hidden">
             <div >
-                <img src="../assets/image_three.jpg" alt="image_one"/>
+                <img src="../static/image_three.jpg" alt="image_one"/>
             </div>
             <div class="bg-black text-white flex items-center justify-center py-1">
                 <p>
