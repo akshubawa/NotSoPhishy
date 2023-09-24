@@ -2,15 +2,23 @@ import warnings
 warnings.filterwarnings("ignore")
 
 import numpy as np
+from scipy import stats
+import math
+import random
+from collections import Counter
+import itertools
 import re
+import googlesearch
+# import seaborn as sns
 from bs4 import BeautifulSoup
 import urllib
 import ipaddress
 import socket
 import requests
 import whois
-from datetime import date
+from datetime import date, datetime
 import time
+from dateutil.parser import parse as date_parse
 from urllib.parse import urlparse
 import pickle
 
@@ -85,10 +93,10 @@ class PhishingChecker:
     def prefixSuffix(self):
         # domain = urlparse(self.url).netloc
         try:
-            if '-' in self.domain:
+            match = re.findall('\-', self.domain)
+            if match:
                 return -1
-            else:
-                return 1
+            return 1
         except:
             return -1
     # PrefixSuffix = prefixSuffix(url)
@@ -99,8 +107,7 @@ class PhishingChecker:
             return 1
         elif dot_count == 2:
             return 0
-        else:
-            return -1
+        return -1
     # SubDomains = subDomains(url)
 
     def check_https(self):
@@ -411,7 +418,8 @@ class PhishingChecker:
 
     def websiteTraffic(self):
         try:
-            rank = BeautifulSoup(urllib.request.urlopen("http://data.alexa.com/data?cli=10&dat=s&url=" + self.url).read(), "xml").find(
+            rank = \
+            BeautifulSoup(urllib.request.urlopen("http://data.alexa.com/data?cli=10&dat=s&url=" + self.url).read(), "xml").find(
                 "REACH")['RANK']
             if (int(rank) < 100000):
                 return 1
@@ -486,7 +494,6 @@ if __name__ == "__main__":
     base_url = input("Enter URL: ")
     response = requests.get(base_url, allow_redirects=True)
     url = response.url
-
     start = time.time()
     reasons = []
     columns = []
@@ -527,7 +534,7 @@ if __name__ == "__main__":
             "This URL deviates from typical URL structures.",
             "This website forwards users to a different URL upon access.",
             "This website customizes or disables the browser's status bar.",
-            "This website doesn't disable the right-click context menu.",
+            "This website disables the right-click context menu.",
             "This website uses pop-up windows.",
             "The website uses iframes in it.",
             "The domain is newly registered.",
@@ -539,14 +546,14 @@ if __name__ == "__main__":
             "The website doesn't provide a statistical report."
         ])
 
-        with open("akshubawa/PhishingWebsiteDetector/Model/classifier-model.pkl", 'rb') as f:
+        with open("C:\\Users\\akshu\\Documents\\Phishing Website Detector\\Model\\classifier-model.pkl", 'rb') as f:
             model = pickle.load(f)
 
         prediction = model.predict(columns)
         result = prediction[0]
 
     if result == -1:
-        print("The website may be phishing.\nThis could be due to the following reason:")
+        print("The website may be phishing due to following reason:")
         for i in range(len(columns[0])):
             if columns[0][i] == -1:
                 print(reasons[i])
@@ -554,8 +561,7 @@ if __name__ == "__main__":
     else:
         print("This website is safe to use.")
     end = time.time()
-    # print("Time Taken:",end-start)
+    print("Time Taken:",end-start)
 
 #https://lotto-india.com/
-#http://login-amazon-account.com/
 

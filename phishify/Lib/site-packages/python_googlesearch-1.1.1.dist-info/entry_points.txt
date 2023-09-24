@@ -1,0 +1,3 @@
+[console_scripts]
+googlesearch = googlesearch.__main__:main
+
