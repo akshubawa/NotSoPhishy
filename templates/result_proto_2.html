@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Phishing Analysis Result</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://kit.fontawesome.com/7f89a67ac3.js" crossorigin="anonymous"></script>
+</head>
+<body>
+    <div class="flex h-[80px] items-center justify-between px-4 py-3">
+        <div class="flex items-center gap-[15px]">
+            <button class="bg-[#ECF3F9] text-[#7B94C1] py-2 px-4 font-bold">
+                Get Extension
+            </button>
+        </div>
+    </div>
+
+    <!-- Content part -->
+    <div class="grid grid-cols-1 place-items-center mt-[40px] sm:mt-0 sm:grid-cols-2 items-center px-[30px]">
+
+        <div class="flex flex-col gap-[30px] justify-center items-center">
+            {% if result == -1 %}
+            <h1 class="text-[1.25rem] sm:w-[85%] w-[95%]">
+                <span class="text-[1.5rem] tracking-wider font-bold">Warning:</span> The website may be phishing due to the following reason(s):
+            </h1>
+            <ul>
+                {% for reason in reasons %}
+                <li>{{ reason }}</li>
+                {% endfor %}
+            </ul>
+            {% else %}
+            <h1 class="text-[1.25rem] sm:w-[85%] w-[95%]">
+                This website is safe to use.
+            </h1>
+            {% endif %}
+
+            <div class="flex items-start w-[85%]">
+                <button id="navigateButton" class="border-[#ECF3F9] hover:bg-[#ECF3F9] duration-300 text-[#7B94C1] border-[1px] rounded-lg w-[200px] py-2 px-4 font-bold">
+                    Check Another URL
+                </button>
+            </div>
+        </div>
+
+    </div>
+
+    <!-- Suggestions Part -->
+    <div class="px-[30px] grid grid-cols-1 sm:grid-cols-3 gap-[30px]">
+        <!-- Include your suggestions here -->
+    </div>
+
+    <!-- Footer Part -->
+    <div class="h-[100px] sm:mt-[90px] mt-[70px] bg-black text-white font-bold flex justify-center items-center">
+        &copy; 2023 Tech Fusion || CopyRight Reserved
+    </div>
+
+    <script>
+        document.getElementById("navigateButton").addEventListener("click", function() {
+            window.location.href = "{{ url_for('index') }}";
+        });
+    </script>
+</body>
+</html>
