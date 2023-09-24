@@ -8,6 +8,12 @@
     <script src="https://kit.fontawesome.com/7f89a67ac3.js" crossorigin="anonymous"></script>
 </head>
 <body>
+    <style>
+        body{
+            min-height: 100vh;
+            border: 2px solid red;
+        }
+    </style>
     <div class="flex h-[80px] items-center justify-between px-4 py-3">
         <div class="flex items-center gap-[15px]">
             <button class="bg-[#ECF3F9] text-[#7B94C1] py-2 px-4 font-bold">
@@ -21,16 +27,16 @@
 
         <div class="flex flex-col gap-[30px] justify-center items-center">
             {% if result == -1 %}
-            <h1 class="text-[1.25rem] sm:w-[85%] w-[95%]">
+            <h1 class="text-[1.25rem] sm:w-[85%] w-[95%] font-semibold">
                 <span class="text-[1.5rem] tracking-wider font-bold">Warning:</span> The website may be phishing due to the following reason(s):
             </h1>
             <ul>
                 {% for reason in reasons %}
-                <li>{{ reason }}</li>
+                <li class="border-[2px] border-[#7B94C1] rounded-lg py-1 px-3 my-2">{{ reason }}</li>
                 {% endfor %}
             </ul>
             {% else %}
-            <h1 class="text-[1.25rem] sm:w-[85%] w-[95%]">
+            <h1 class="text-[1.25rem] sm:w-[85%] w-[95%] border-[2px] border-[#7B94C1] rounded-lg py-1 px-3 my-2">
                 This website is safe to use.
             </h1>
             {% endif %}
@@ -44,15 +50,10 @@
 
     </div>
 
-    <!-- Suggestions Part -->
-    <div class="px-[30px] grid grid-cols-1 sm:grid-cols-3 gap-[30px]">
-        <!-- Include your suggestions here -->
-    </div>
-
     <!-- Footer Part -->
-    <div class="h-[100px] bg-black text-white font-bold flex justify-center items-center">
+    <!-- <div class="h-[100px] bg-black text-white absolute right-0 left-0 bottom-0 font-bold flex justify-center items-center">
         &copy; 2023 Tech Fusion | All rights reserved.
-    </div>
+    </div> -->
 
     <script>
         document.getElementById("navigateButton").addEventListener("click", function() {
