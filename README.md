@@ -11,7 +11,6 @@ Our solution empowers users with tools that leverage machine learning to recogni
 Before running the **Not So Phishy** project, ensure you have the following dependencies installed, which can be found in the `requirements.txt` file:
 
 - Flask
-- Gunicorn
 - python-whois
 - python-googlesearch
 - scikit-learn==1.2.2
