@@ -546,7 +546,7 @@ if __name__ == "__main__":
             "The website doesn't provide a statistical report."
         ])
 
-        with open("C:\\Users\\amanc\\OneDrive\\Desktop\\PhishingWebsiteDetector\\Model\\classifier-model.pkl", 'rb') as f:
+        with open("C:\\Users\\akshu\\Documents\\NotSoPhishy\\Model\\classifier-model.pkl", 'rb') as f:
             model = pickle.load(f)
 
         prediction = model.predict(columns)
@@ -560,8 +560,8 @@ if __name__ == "__main__":
 
     else:
         print("This website is safe to use.")
+        print(columns[0])
     end = time.time()
     print("Time Taken:",end-start)
 
 #https://lotto-india.com/
-
