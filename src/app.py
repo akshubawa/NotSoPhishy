@@ -48,7 +48,7 @@ def analyze_url(url):
             "This URL deviates from typical URL structures.",
             "This website forwards users to a different URL upon access.",
             "This website customizes or disables the browser's status bar.",
-            "This website disables the right-click context menu.",
+            "This website doesn't disable the right-click context menu.",
             "This website uses pop-up windows.",
             "The website uses iframes in it.",
             "The domain is newly registered.",
