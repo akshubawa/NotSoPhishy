@@ -12,15 +12,30 @@
 
 </head>
 <body>
-<div class="flex h-[80px] items-center justify-between px-4 py-3">
-        <div class="flex items-center gap-[10px] ">
+<div class="flex h-[80px] items-center justify-between sm:px-4 px-3 py-3">
+        <div class="flex items-center sm:gap-[10px] gap-[5px] cursor-pointer ">
             <div>
                 <img class="w-[50px] h-[50px]" src="../static/logo-transparent.png" alt="logo image"/>
             </div>
-            <h1 class="font-bold tracking-widest uppercase sm:text-4xl text-2xl">Not So Phishy</h1>
+            <h1 class="font-bold tracking-[3px] uppercase md:text-3xl sm:text-2xl text-[1.15rem] heading_name ">Not So Phishy</h1>
         </div>
-        <div class="flex items-center gap-[15px]">
-            <button class="bg-[#ECF3F9] text-[#7B94C1] py-2 px-4 font-bold">
+        <div class="hidden md:block">
+            <div class="flex items-center gap-[10px]">
+                <a href="#" class="font-semibold text-[#2C57A6] border-[2px] px-3 rounded-lg py-1 border-[#7B94C1] hover:mt-[-10px] hover:bg-[#7B94C1] hover:text-[#fff]  duration-300">About Us</a>
+                <a href="#" class="font-semibold text-[#2C57A6] border-[2px] px-3 rounded-lg py-1 border-[#7B94C1] hover:mt-[-10px] hover:bg-[#7B94C1] hover:text-[#fff]  duration-300">Contact Us</a>
+                <button class="bg-[#ECF3F9] rounded-lg text-[#7B94C1] hover:mt-[-10px] duration-300 py-2 sm:px-4 px-2 font-bold">
+                    Get Extension
+                </button>
+            </div>
+        </div>
+        <div class="block md:hidden">
+            <i class="fas fa-bars nav_icon_mark text-[1.5rem]"></i>
+        </div>
+        <div class="mobile_nav hidden flex-col w-[50%] bg-white z-10 pt-[100px] absolute right-0 top-0 h-[90vh] pr-[15px] border-[2px]  items-center gap-[10px]">
+            <i class="fas fa-times cross_mark absolute right-5 top-5 text-[1.5rem]"></i>
+            <a href="#" class="font-semibold my-[20px] text-[#2C57A6] border-[2px] px-3 rounded-lg py-1 border-[#7B94C1] hover:mt-[-10px] hover:bg-[#7B94C1] hover:text-[#fff]  duration-300">About Us</a>
+            <a href="#" class="font-semibold my-[20px] text-[#2C57A6] border-[2px] px-3 rounded-lg py-1 border-[#7B94C1] hover:mt-[-10px] hover:bg-[#7B94C1] hover:text-[#fff]  duration-300">Contact Us</a>
+            <button class="bg-[#ECF3F9] my-[20px] rounded-lg text-[#7B94C1] hover:mt-[-10px] duration-300 py-2 sm:px-4 px-2 font-bold">
                 Get Extension
             </button>
         </div>
@@ -110,6 +125,18 @@ Refrain from sharing sensitive information like passwords, credit card numbers, 
     </div>
 
 <script>
+    const mobile_nav = document.querySelector('.mobile_nav'); // Select the mobile navigation menu
+    const nav_icon_mark = document.querySelector('.fa-bars'); // Select the navigation icon (fa-bars)
+    const cross_mark = document.querySelector('.cross_mark'); // Select the cross icon (fa-xmark)
+
+    nav_icon_mark.addEventListener('click', () => {
+        mobile_nav.style.display = "flex";
+    });
+
+    cross_mark.addEventListener('click', () => {
+        mobile_nav.style.display = "none";
+        console.log("again_clicked");
+    });
     document.getElementById("navigateButton").addEventListener("click", function() {
     window.location.href = "{{ url_for('index') }}";
     });
