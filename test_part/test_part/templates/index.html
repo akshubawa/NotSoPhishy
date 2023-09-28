@@ -5,15 +5,27 @@
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Document</title>
+    <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
 
 
 </head>
 <body>
-<div class="hover-container">
+<div class="hover-container px-3">
+    <h1 class="text-3xl font-bold my-3 text-center">Hover Over Me</h1>
     <a href="#" class="hover-link">https://lotto-india.com/</a>
-    <div class="popup">
-        <p id="extracted-text">Loading...</p>
+    <br/>
+    <a href="#" class="hover-link">https://google.com/</a>
+    <br/>
+<!--    <a href="#" class="hover-link">https://lotto-india.com/</a>-->
+<!--    <br/>-->
+<!--    <a href="#" class="hover-link">https://lotto-india.com/</a>-->
+<!--    <br/>-->
+    <div class="popup w-fit h-fit border-[2px] border-cyan-900 px-4 py-3 my-3 rounded-lg">
+        <div id="extracted-text" class="flex gap-3 items-center">
+            <div class="animate-spin rounded-full h-6 w-6 border-t-2 border-blue-500 border-solid"></div>
+            Loading...
+        </div>
     </div>
     
 </div>
