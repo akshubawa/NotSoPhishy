@@ -546,7 +546,7 @@ if __name__ == "__main__":
             "The website doesn't provide a statistical report."
         ])
 
-        with open("C:/Users/KABIR YADAV/Desktop/SIH_FILES/classifier-model.pkl", 'rb') as f:
+        with open("C:\\Users\\akshu\\Documents\\NotSoPhishy\\Model\\classifier-model.pkl", 'rb') as f:
             model = pickle.load(f)
 
         prediction = model.predict(columns)
