@@ -99,17 +99,25 @@ def analyze():
     result,reasons = analyze_url(url)
     return render_template("result_proto_2.html", result=result,reasons=reasons)
 
-@app.route('/identifyphisingwebsite')
+@app.route('/howToIdentifyPhishingWebsite')
 def identify_phishing_website():
     return render_template('identifyphisingwebsite.html')
 
-@app.route('/phishingscams')
-def phishing_scams():
-    return render_template('phishingscams.html')
+@app.route('/phishingsUpdates')
+def phishing_updates():
+    return render_template('phishingupdates.html')
 
 @app.route('/phishingwebsiteexample')
 def phishing_website_examples():
     return render_template('phishingwebsiteexample.html')
+
+@app.route('/contactus')
+def contact_us():
+    return render_template('contactus.html')
+
+@app.route('/aboutus')
+def about_us():
+    return render_template('aboutus.html')
 
 if __name__ == "__main__":
     app.run(debug=True)
