@@ -5,7 +5,7 @@ from flask import Flask, request, render_template
 import numpy as np
 import requests
 import main as m
-app = Flask(__name__,static_folder='C:\\Users\\akshu\\Documents\\NotSoPhishy\\static',template_folder='C:\\Users\\akshu\\Documents\\NotSoPhishy\\templates')
+app = Flask(__name__,static_folder='C:\\Users\\ADITI\\Downloads\\NotSoPhishy\\static',template_folder='C:\\Users\\akshu\\Documents\\NotSoPhishy\\templates')
 
 def analyze_url(url):
     if not url:
