@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>About Us - Not So Phishy</title>
+    <link rel="icon" href="../static/favicon.ico" type="image/x-icon" />
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script
+      src="https://kit.fontawesome.com/7f89a67ac3.js"
+      crossorigin="anonymous"
+    ></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.10.1/gsap.min.js"></script>
+    <style>
+      .contact_heading::before {
+        content: "";
+        width: 100%;
+        height: 8px;
+        background: linear-gradient(
+          90deg,
+          rgba(44, 87, 166, 1) 50%,
+          rgba(123, 148, 193, 1) 50%
+        );
+        position: absolute;
+        display: block;
+        bottom: -10px;
+        border-radius: 20px;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="flex h-[80px] items-center justify-between sm:px-4 px-3 py-3">
+      <div class="flex items-center sm:gap-[10px] gap-[5px] cursor-pointer">
+        <div>
+          <img
+            class="w-[50px] h-[50px]"
+            src="../static/logo-transparent.png"
+            alt="logo image"
+          />
+        </div>
+        <h1
+          class="font-bold tracking-[3px] uppercase md:text-3xl sm:text-2xl text-[1.15rem] heading_name"
+        >
+          Not So Phishy
+        </h1>
+      </div>
+      <div class="hidden md:block">
+        <div class="flex items-center gap-[10px]">
+          <a
+            href="#"
+            class="font-semibold text-[#2C57A6] border-[2px] px-3 rounded-lg py-1 border-[#7B94C1] hover:mt-[-10px] hover:bg-[#7B94C1] hover:text-[#fff] duration-300"
+            >About Us</a
+          >
+          <a
+            href="#"
+            class="font-semibold text-[#2C57A6] border-[2px] px-3 rounded-lg py-1 border-[#7B94C1] hover:mt-[-10px] hover-bg-[#7B94C1] hover-text-[#fff] duration-300"
+            >Contact Us</a
+          >
+          <button
+            class="bg-[#ECF3F9] rounded-lg text-[#7B94C1] hover:mt-[-10px] duration-300 py-2 sm:px-4 px-2 font-bold"
+          >
+            Get Extension
+          </button>
+        </div>
+      </div>
+      <div class="block md:hidden">
+        <i class="fa-solid nav_icon_mark fa-bars text-[1.5rem]"></i>
+      </div>
+      <div
+        class="mobile_nav hidden flex-col w-[50%] bg-white z-10 pt-[100px] absolute right-0 top-0 h-[90vh] border-[2px] items-center gap-[10px]"
+      >
+        <i
+          class="fa-solid cross_mark fa-xmark absolute right-5 top-5 text-[1.5rem]"
+        ></i>
+        <a
+          href="#"
+          class="font-semibold my-[20px] text-[#2C57A6] border-[2px] px-3 rounded-lg py-1 border-[#7B94C1] hover:mt-[-10px] hover:bg-[#7B94C1] hover-text-[#fff] duration-300"
+          >About Us</a
+        >
+        <a
+          href="#"
+          class="font-semibold my-[20px] text-[#2C57A6] border-[2px] px-3 rounded-lg py-1 border-[#7B94C1] hover:mt-[-10px] hover:bg-[#7B94C1] hover-text-[#fff] duration-300"
+          >Contact Us</a
+        >
+        <button
+          class="bg-[#ECF3F9] my-[20px] rounded-lg text-[#7B94C1] hover:mt-[-10px] duration-300 py-2 sm:px-4 px-2 font-bold"
+        >
+          Get Extension
+        </button>
+      </div>
+    </div>
+
+    <div class="sm:px-6 px-3">
+      <h1 class="contact_heading relative font-bold text-2xl inline-block">
+        About Us
+      </h1>
+      <div class="mt-[50px] sm:w-[70%]">
+        <p>
+          <span class="font-semibold text-2xl">W</span>ith NotSoPhishy , It is easy ro find the right Website ok any kind
+          -on your phone , your computer, your tablet and more
+        </p>
+        <p class="mt-[5px]">
+            <span class="font-semibold text-2xl">T</span>here are millions of Website which are harmful for your device and
+          your data. NotSoPhishy is a website that helps users detect phishing
+          websites and stay safe online.
+        </p>
+        <br/>
+      </div>
+      <div class="mt-6 slider_part">
+        <p><strong>Company Name: </strong>Tech Fusion</p>
+        <p>
+          <strong>Address: </strong> Tech Zone - 2 , Bennett University, India
+        </p>
+        <p><strong>Phone: </strong>+91 6202549978 , +91 7088839967</p>
+        <p><strong>Email: </strong>techfusion@gmail.com</p>
+      </div>
+
+      <h1 class="text-xl font-semibold mt-[20px]">Our Objective</h1>
+    </div>
+
+    <script>
+      const questions = document.querySelectorAll(".question");
+
+      questions.forEach((question) => {
+        question.addEventListener("click", () => {
+          const answer = question.nextElementSibling;
+          question.parentElement.classList.toggle("opened");
+          answer.style.display =
+            answer.style.display === "none" ? "block" : "none";
+        });
+      });
+      const slider = document.querySelector(".slider_part");
+      gsap.fromTo(
+        slider,
+        {
+          x: -200,
+          opacity: 0,
+        },
+        {
+          x: 0,
+          opacity: 1,
+          duration: 1,
+          stagger: 0.5,
+        }
+      );
+    </script>
+  </body>
+</html>
