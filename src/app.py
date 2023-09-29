@@ -12,7 +12,7 @@ def analyze_url(url):
         return -1, ["URL is empty or not provided."]
 
     if not url.startswith(("http://", "https://")):
-        url = "http://" + url
+        url = "https://" + url
 
     try:
         response = requests.get(url, verify=False, timeout=10)
@@ -51,7 +51,7 @@ def analyze_url(url):
                 "There are links in the HTML anchor tags pointing to external domains.",
                 "This website has links in script tags.",
                 "The website contains a server form handler.",
-                "The URL has email addresses in it.",
+                "The website doesn't has email addresses in it.",
                 "This URL deviates from typical URL structures.",
                 "This website forwards users to a different URL upon access.",
                 "This website customizes or disables the browser's status bar.",

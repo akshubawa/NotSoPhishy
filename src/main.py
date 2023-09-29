@@ -530,7 +530,7 @@ if __name__ == "__main__":
             "There are links in the HTML anchor tags pointing to external domains.",
             "This website has links in script tags.",
             "The website contains a server form handler.",
-            "The URL has email addresses in it.",
+            "The website doesn't has email addresses in it.",
             "This URL deviates from typical URL structures.",
             "This website forwards users to a different URL upon access.",
             "This website customizes or disables the browser's status bar.",
