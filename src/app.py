@@ -5,6 +5,7 @@ from flask import Flask, request, render_template
 import numpy as np
 import requests
 import main as m
+
 app = Flask(__name__,static_folder='C:\\Users\\akshu\\Documents\\NotSoPhishy\\static',template_folder='C:\\Users\\akshu\\Documents\\NotSoPhishy\\templates')
 
 def analyze_url(url):
@@ -110,7 +111,6 @@ def phishing_scams():
 @app.route('/phishingwebsiteexample')
 def phishing_website_examples():
     return render_template('phishingwebsiteexample.html')
-
 
 if __name__ == "__main__":
     app.run(debug=True)
