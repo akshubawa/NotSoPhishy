@@ -111,6 +111,5 @@ def phishing_scams():
 def phishing_website_examples():
     return render_template('phishingwebsiteexample.html')
 
-
 if __name__ == "__main__":
     app.run(debug=True)
