@@ -38,8 +38,8 @@
             alt="logo image"
           />
         </div>
-        <h1
-          class="font-bold tracking-[3px] uppercase md:text-3xl sm:text-2xl text-[1.15rem] heading_name"
+        <a href="{{ url_for('index') }}" 
+          h1 class="font-bold tracking-[3px] uppercase md:text-3xl sm:text-2xl text-[1.15rem] heading_name"
         >
           Not So Phishy
         </h1>
@@ -47,12 +47,12 @@
       <div class="hidden md:block">
         <div class="flex items-center gap-[10px]">
           <a
-            href="#"
+            href="{{ url_for('about_us') }}"
             class="font-semibold text-[#2C57A6] border-[2px] px-3 rounded-lg py-1 border-[#7B94C1] hover:mt-[-10px] hover:bg-[#7B94C1] hover:text-[#fff] duration-300"
             >About Us</a
           >
           <a
-            href="#"
+            href="{{ url_for('contact_us') }}"
             class="font-semibold text-[#2C57A6] border-[2px] px-3 rounded-lg py-1 border-[#7B94C1] hover:mt-[-10px] hover-bg-[#7B94C1] hover-text-[#fff] duration-300"
             >Contact Us</a
           >
@@ -73,12 +73,12 @@
           class="fa-solid cross_mark fa-xmark absolute right-5 top-5 text-[1.5rem]"
         ></i>
         <a
-          href="#"
+          href="{{ url_for('about_us') }}"
           class="font-semibold my-[20px] text-[#2C57A6] border-[2px] px-3 rounded-lg py-1 border-[#7B94C1] hover:mt-[-10px] hover:bg-[#7B94C1] hover-text-[#fff] duration-300"
           >About Us</a
         >
         <a
-          href="#"
+          href="{{ url_for('contact_us') }}"
           class="font-semibold my-[20px] text-[#2C57A6] border-[2px] px-3 rounded-lg py-1 border-[#7B94C1] hover:mt-[-10px] hover:bg-[#7B94C1] hover-text-[#fff] duration-300"
           >Contact Us</a
         >

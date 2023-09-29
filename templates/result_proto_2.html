@@ -17,12 +17,12 @@
             <div>
                 <img class="w-[50px] h-[50px]" src="../static/logo-transparent.png" alt="logo image"/>
             </div>
-            <h1 class="font-bold tracking-[3px] uppercase md:text-3xl sm:text-2xl text-[1.15rem] heading_name ">Not So Phishy</h1>
+            <a href="{{ url_for('index') }}" h1 class="font-bold tracking-[3px] uppercase md:text-3xl sm:text-2xl text-[1.15rem] heading_name ">Not So Phishy</h1>
         </div>
         <div class="hidden md:block">
             <div class="flex items-center gap-[10px]">
-                <a href="#" class="font-semibold text-[#2C57A6] border-[2px] px-3 rounded-lg py-1 border-[#7B94C1] hover:mt-[-10px] hover:bg-[#7B94C1] hover:text-[#fff]  duration-300">About Us</a>
-                <a href="#" class="font-semibold text-[#2C57A6] border-[2px] px-3 rounded-lg py-1 border-[#7B94C1] hover:mt-[-10px] hover:bg-[#7B94C1] hover:text-[#fff]  duration-300">Contact Us</a>
+                <a href="{{ url_for('about_us') }}" class="font-semibold text-[#2C57A6] border-[2px] px-3 rounded-lg py-1 border-[#7B94C1] hover:mt-[-10px] hover:bg-[#7B94C1] hover:text-[#fff]  duration-300">About Us</a>
+                <a href="{{ url_for('contact_us') }}" class="font-semibold text-[#2C57A6] border-[2px] px-3 rounded-lg py-1 border-[#7B94C1] hover:mt-[-10px] hover:bg-[#7B94C1] hover:text-[#fff]  duration-300">Contact Us</a>
                 <button class="bg-[#ECF3F9] rounded-lg text-[#7B94C1] hover:mt-[-10px] duration-300 py-2 sm:px-4 px-2 font-bold">
                     Get Extension
                 </button>
@@ -33,8 +33,8 @@
         </div>
         <div class="mobile_nav hidden flex-col w-[50%] bg-white z-10 pt-[100px] absolute right-0 top-0 h-[90vh] pr-[15px] border-[2px]  items-center gap-[10px]">
             <i class="fas fa-times cross_mark absolute right-5 top-5 text-[1.5rem]"></i>
-            <a href="#" class="font-semibold my-[20px] text-[#2C57A6] border-[2px] px-3 rounded-lg py-1 border-[#7B94C1] hover:mt-[-10px] hover:bg-[#7B94C1] hover:text-[#fff]  duration-300">About Us</a>
-            <a href="#" class="font-semibold my-[20px] text-[#2C57A6] border-[2px] px-3 rounded-lg py-1 border-[#7B94C1] hover:mt-[-10px] hover:bg-[#7B94C1] hover:text-[#fff]  duration-300">Contact Us</a>
+            <a href="{{ url_for('about_us') }}" class="font-semibold my-[20px] text-[#2C57A6] border-[2px] px-3 rounded-lg py-1 border-[#7B94C1] hover:mt-[-10px] hover:bg-[#7B94C1] hover:text-[#fff]  duration-300">About Us</a>
+            <a href="{{ url_for('contact_us') }}" class="font-semibold my-[20px] text-[#2C57A6] border-[2px] px-3 rounded-lg py-1 border-[#7B94C1] hover:mt-[-10px] hover:bg-[#7B94C1] hover:text-[#fff]  duration-300">Contact Us</a>
             <button class="bg-[#ECF3F9] my-[20px] rounded-lg text-[#7B94C1] hover:mt-[-10px] duration-300 py-2 sm:px-4 px-2 font-bold">
                 Get Extension
             </button>
