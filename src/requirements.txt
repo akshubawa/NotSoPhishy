@@ -1,11 +1,4 @@
 flask
 python-whois
 python-googlesearch
-scikit-learn
-python-dateutil
-parse
-datetime
-requests
-sockets
-ipaddress
-bs4
+scikit-learn==1.2.2
