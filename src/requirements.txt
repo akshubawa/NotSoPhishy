@@ -1,0 +1,4 @@
+flask
+python-whois
+python-googlesearch
+scikit-learn==1.2.2
