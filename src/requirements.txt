@@ -2,6 +2,7 @@ flask
 python-whois
 python-googlesearch
 scikit-learn
+python-dateutil
 parse
 datetime
 requests
