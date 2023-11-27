@@ -18,7 +18,7 @@ Before running the **Not So Phishy** project, ensure you have the following depe
 To install these dependencies, use the following command:
 
 ```bash
-pip install -r src/requirements.txt
+pip install -r requirements.txt
 ```
 
 ## Instructions to Run
@@ -60,7 +60,7 @@ Follow these steps to run the **Not So Phishy** project:
 5. Install the project's dependencies:
 
    ```bash
-   pip install -r src/requirements.txt
+   pip install -r requirements.txt
    ```
 
 6. Start the Flask application:
