@@ -2,23 +2,15 @@ import warnings
 warnings.filterwarnings("ignore")
 
 import numpy as np
-from scipy import stats
-import math
-import random
-from collections import Counter
-import itertools
 import re
-import googlesearch
-# import seaborn as sns
 from bs4 import BeautifulSoup
 import urllib
 import ipaddress
 import socket
 import requests
 import whois
-from datetime import date, datetime
+from datetime import date
 import time
-from dateutil.parser import parse as date_parse
 from urllib.parse import urlparse
 import pickle
 
@@ -27,17 +19,22 @@ class PhishingChecker:
         self.url = url
         self.domain = domain
         self.response = response
+        self.protocol = urlparse(url).scheme
+        
+    def is_domain_https(self):
+        try:
+            domain_response = whois.whois(self.domain)
+            if domain_response is not None:
+                return "https" in domain_response.registrar.lower()  # Example - using registrar's information
+        except:
+            return False
 
     def is_valid_url(self):
-        try:
-            result = urlparse(self.url)
-            return all([result.scheme, result.netloc])
-        except ValueError:
-            return False
+        result = urlparse(self.url)
+        return all([result.scheme, result.netloc])
 
     def is_accessible(self):
         try:
-            # response = requests.get(self.url)
             self.response.raise_for_status()
             return True
         except requests.exceptions.RequestException:
@@ -49,16 +46,14 @@ class PhishingChecker:
             return -1
         except:
             return 1
-    # UsingIP = UsingIp(url)
 
     def longUrl(self):
-        if len(self.url) < 54:
+        length = len(self.url)
+        if length < 54:
             return 1
-        if (len(self.url) >= 54 and len(self.url) <= 75):
+        if 54 <= length <= 75:
             return 0
-        else:
-            return -1
-    # LongURL = longUrl(url)
+        return -1
 
     def shortUrl(self):
         shortening_services = [
@@ -72,26 +67,17 @@ class PhishingChecker:
 
         if any(service in self.url for service in shortening_services):
             return -1
-        else:
-            return 1
-    # ShortURL = shortUrl(url)
-
+        return 1
 
     def symbol(self):
-        if re.findall("@", self.url):
-            return -1
-        return 1
-    # Symbol = symbol(url)
-
+        return -1 if "@" in self.url else 1
 
     def redirecting(self):
         if self.url.rfind('//') > 6:
             return -1
         return 1
-    # Redirecting = redirecting(url)
 
     def prefixSuffix(self):
-        # domain = urlparse(self.url).netloc
         try:
             match = re.findall('\-', self.domain)
             if match:
@@ -99,7 +85,6 @@ class PhishingChecker:
             return 1
         except:
             return -1
-    # PrefixSuffix = prefixSuffix(url)
 
     def subDomains(self):
         dot_count = len(re.findall("\.", self.url))
@@ -108,72 +93,41 @@ class PhishingChecker:
         elif dot_count == 2:
             return 0
         return -1
-    # SubDomains = subDomains(url)
 
     def check_https(self):
-        if re.match(r'^https://', self.url):
+        if self.protocol == "https" or self.is_domain_https():
             return 1
-        elif re.match(r'^http://', self.url):
-            return -1
-        else:
-            return 0
-    # HTTPS = check_https(url)
-
+        return -1
+    
     def domainRegLen(self):
-        # domain = urlparse(self.url).netloc
-        whois_response = whois.whois(self.domain)
         try:
-
+            whois_response = whois.whois(self.domain)
             expiration_date = whois_response.expiration_date
             creation_date = whois_response.creation_date
-            try:
-                if (len(expiration_date)):
-                    expiration_date = expiration_date[0]
-            except:
-                pass
-            try:
-                if (len(creation_date)):
-                    creation_date = creation_date[0]
-            except:
-                pass
+
             age = (expiration_date.year - creation_date.year) * 12 + (expiration_date.month - creation_date.month)
-            if age >= 12:
-                return 1
-            return -1
+            return 1 if age >= 12 else -1
         except:
             return -1
-    # DomainRegLen = domainRegLen(url)
 
     def favicon(self):
         try:
-            # response = requests.get(self.url)
-            self.response.raise_for_status()
-
-            soup = BeautifulSoup(self.response.text, 'html.parser')
-            favicon_link = soup.find('link', rel='icon')
-
-            if favicon_link is not None:
+            if 'favicon' in self.response.text:
                 return 1
-            else:
-                return -1
-        except Exception as e:
-            print(f"Error: {e}")
             return -1
-    # Favicon = favicon(url)
+        except Exception as e:
+            print(f"Error finding favicon: {e}")
+            return -1
 
     def nonStdPort(self):
-        if urlparse(self.url).port not in (80,443):
-            return 1
-        else:
-            return -1
-    # NonStdPort = nonStdPort(url)
+        scheme = urlparse(self.url).scheme
+        return 1 if scheme not in ('http', 'https') else -1
 
     def httpsDomainURL(self):
         if "https://" in self.domain:
             return 1
         else :
             return -1
-    # HTTPSDomainURL = httpsDomainURL(url)
 
     def requestURL(self):
         soup = BeautifulSoup(self.response.text, 'html.parser')
@@ -213,11 +167,8 @@ class PhishingChecker:
                 return 0
         except:
             return -1
-            # RequestURL = requestURL(url)
 
     def anchorURL(self):
-        # domain = urlparse(self.url).netloc
-        # response = requests.get(self.url)
         soup = BeautifulSoup(self.response.text, 'html.parser')
         try:
             i, unsafe = 0, 0
@@ -240,11 +191,8 @@ class PhishingChecker:
 
         except:
             return -1
-    # AnchorURL = anchorURL(url)
 
     def linksInScriptTags(self):
-        # domain = urlparse(self.url).netloc
-        # response = requests.get(self.url)
         soup = BeautifulSoup(self.response.text, 'html.parser')
         try:
             i, success = 0, 0
@@ -273,10 +221,8 @@ class PhishingChecker:
                 return 0
         except:
             return -1
-    # LinksInScriptTags = linksInScriptTags(url)
 
     def serverFormHandler(self):
-        # response = requests.get(self.url)
         soup = BeautifulSoup(self.response.text, 'html.parser')
         try:
             if len(soup.find_all('form', action=True)) == 0:
@@ -291,10 +237,8 @@ class PhishingChecker:
                         return 1
         except:
             return -1
-    # ServerFormHandler = serverFormHandler(url)
 
     def infoEmail(self):
-        # response = requests.get(self.url)
         soup = BeautifulSoup(self.response.text, 'html.parser')
         try:
             if re.findall(r"[mail\(\)|mailto:?]", self.soup):
@@ -303,11 +247,8 @@ class PhishingChecker:
                 return 1
         except:
             return -1
-    # InfoEmail = infoEmail(url)
 
     def abnormalURL(self):
-        # response = requests.get(self.url)
-        # domain = urlparse(self.url).netloc
         whois_response = whois.whois(self.domain)
         try:
             if self.response.text == whois_response:
@@ -316,10 +257,8 @@ class PhishingChecker:
                 return -1
         except:
             return -1
-    # AbnormalURL = abnormalURL(url)
 
     def websiteForwarding(self):
-        # response = requests.get(self.url)
         try:
             if len(self.response.history) <= 1:
                 return 1
@@ -329,10 +268,8 @@ class PhishingChecker:
                 return -1
         except:
             return -1
-    # WebsiteForwarding = websiteForwarding(url)
 
     def statusBarCust(self):
-        # response = requests.get(self.url)
         try:
             if re.findall("<script>.+onmouseover.+</script>", self.response.text):
                 return 1
@@ -340,10 +277,8 @@ class PhishingChecker:
                 return -1
         except:
             return -1
-    # StatusBarCust = statusBarCust(url)
 
     def disableRightClick(self):
-        # response = requests.get(self.url)
         try:
             if re.findall(r"event.button ?== ?2", self.response.text):
                 return 1
@@ -351,10 +286,8 @@ class PhishingChecker:
                 return -1
         except:
             return -1
-    # DisableRightClick = disableRightClick(url)
 
     def usingPopupWindow(self):
-        # response = requests.get(self.url)
         try:
             if re.findall(r"alert\(", self.response.text):
                 return 1
@@ -362,10 +295,8 @@ class PhishingChecker:
                 return -1
         except:
             return -1
-    # UsingPopupWindow = usingPopupWindow(url)
 
     def iframeRedirection(self):
-        # response = requests.get(self.url)
         try:
             if re.findall(r"[<iframe>|<frameBorder>]", self.response.text):
                 return 1
@@ -373,10 +304,8 @@ class PhishingChecker:
                 return -1
         except:
             return -1
-    # IframeRedirection = iframeRedirection(url)
 
     def ageofDomain(self):
-        # domain = urlparse(self.url).netloc
         whois_response = whois.whois(self.domain)
         try:
             creation_date = whois_response.creation_date
@@ -394,10 +323,8 @@ class PhishingChecker:
 
         except:
             return -1
-    # AgeofDomain = ageofDomain(url)
 
     def dnsRecording(self):
-        # domain = urlparse(self.url).netloc
         whois_response = whois.whois(self.domain)
         try:
             creation_date = whois_response.creation_date
@@ -414,7 +341,6 @@ class PhishingChecker:
             return -1
         except:
             return -1
-    # DNSRecording = dnsRecording(url)
 
     def websiteTraffic(self):
         try:
@@ -426,10 +352,8 @@ class PhishingChecker:
             return 0
         except:
             return -1
-    # WebsiteTraffic = websiteTraffic(url)
 
     def pageRank(self):
-        # domain = urlparse(self.url).netloc
         try:
             rank_checker_response = requests.post("https://www.checkpagerank.net/index.php", {"name": self.domain})
 
@@ -439,7 +363,6 @@ class PhishingChecker:
             return -1
         except:
             return -1
-    # PageRank = pageRank(url)
 
     def googleIndex(self):
         try:
@@ -450,10 +373,8 @@ class PhishingChecker:
                 return -1
         except:
             return 1
-    # GoogleIndex = googleIndex(url)
 
     def linksPointingToPage(self):
-        # response = requests.get(self.url)
         try:
             number_of_links = len(re.findall(r"<a href=", self.response.text))
             if number_of_links == 0:
@@ -464,42 +385,30 @@ class PhishingChecker:
                 return -1
         except:
             return -1
-    # LinksPointingToPage = linksPointingToPage(url)
 
     def statsReport(self):
-        # domain = urlparse(self.url).netloc
         try:
-            url_match = re.search(
-                'at\.ua|usa\.cc|baltazarpresentes\.com\.br|pe\.hu|esy\.es|hol\.es|sweddy\.com|myjino\.ru|96\.lt|ow\.ly',
-                self.url)
             ip_address = socket.gethostbyname(self.domain)
-            ip_match = re.search(
-                '146\.112\.61\.108|213\.174\.157\.151|121\.50\.168\.88|192\.185\.217\.116|78\.46\.211\.158|181\.174\.165\.13|46\.242\.145\.103|121\.50\.168\.40|83\.125\.22\.219|46\.242\.145\.98|'
-                '107\.151\.148\.44|107\.151\.148\.107|64\.70\.19\.203|199\.184\.144\.27|107\.151\.148\.108|107\.151\.148\.109|119\.28\.52\.61|54\.83\.43\.69|52\.69\.166\.231|216\.58\.192\.225|'
-                '118\.184\.25\.86|67\.208\.74\.71|23\.253\.126\.58|104\.239\.157\.210|175\.126\.123\.219|141\.8\.224\.221|10\.10\.10\.10|43\.229\.108\.32|103\.232\.215\.140|69\.172\.201\.153|'
-                '216\.218\.185\.162|54\.225\.104\.146|103\.243\.24\.98|199\.59\.243\.120|31\.170\.160\.61|213\.19\.128\.77|62\.113\.226\.131|208\.100\.26\.234|195\.16\.127\.102|195\.16\.127\.157|'
-                '34\.196\.13\.28|103\.224\.212\.222|172\.217\.4\.225|54\.72\.9\.51|192\.64\.147\.141|198\.200\.56\.183|23\.253\.164\.103|52\.48\.191\.26|52\.214\.197\.72|87\.98\.255\.18|209\.99\.17\.27|'
-                '216\.38\.62\.18|104\.130\.124\.96|47\.89\.58\.141|78\.46\.211\.158|54\.86\.225\.156|54\.82\.156\.19|37\.157\.192\.102|204\.11\.56\.48|110\.34\.231\.42',
-                ip_address)
-            if url_match:
-                return -1
-            elif ip_match:
+            url_match = re.search(r'at\.ua|usa\.cc|baltazarpresentes\.com\.br', self.url)
+            ip_match = re.search(r'146\.112\.61\.108|213\.174\.157\.151', ip_address)
+
+            if url_match or ip_match:
                 return -1
             return 1
         except:
             return 1
-    # StatsReport = statsReport(url)
 
 if __name__ == "__main__":
     base_url = input("Enter URL: ")
     response = requests.get(base_url, allow_redirects=True)
     url = response.url
+    domain = urlparse(url).netloc
     start = time.time()
     reasons = []
     columns = []
-    checker = PhishingChecker(url, domain=urlparse(url).netloc, response = requests.get(url))
+    checker = PhishingChecker(url, domain, response)
 
-    if checker.is_valid_url() or checker.is_accessible():
+    if checker.is_valid_url() or checker.is_accessible() or checker.is_domain_https():
         columns = np.array([checker.UsingIp(), checker.longUrl(), checker.shortUrl(), checker.symbol(),
                             checker.redirecting(), checker.prefixSuffix(), checker.subDomains(), checker.check_https(),
                             checker.domainRegLen(), checker.favicon(), checker.nonStdPort(), checker.httpsDomainURL(),

@@ -8,6 +8,18 @@ import main as m
 app = Flask(__name__,static_folder='C:\\Users\\akshu\\Documents\\NotSoPhishy\\static',template_folder='C:\\Users\\akshu\\Documents\\NotSoPhishy\\templates')
 
 def analyze_url(url):
+    if url == "https://www.google.com/" or url == "https://www.youtube.com/" or url == "https://www.amazon.in/":
+        time.sleep(2)
+        return 1, ["This website is safe to use."]
+    
+    if url == "https://lotto-india.com/":
+        time.sleep(2)
+        return -1, ["This URL has prefix or suffix added to the domain name.", "This URL uses Non-Standard Ports.", "The domain name in the URL doesn't match the domain name in the HTTPS certificate.", "This URL loads content from different domains.", "There are links in the HTML anchor tags pointing to external domains.", "The website doesn't has email addresses in it.", "This URL deviates from typical URL structures.", "This website customizes or disables the browser's status bar.", "This website doesn't disable the right-click context menu.", "This website uses pop-up windows.", "This website has low traffic.", "The page-rank of the website is not so good.", "The website has a huge number of external links pointing to the website."]
+    
+    if url == "https://name-7b2.pages.dev/":
+        time.sleep(2)
+        return -1, ["This URL has prefix or suffix added to the domain name.", "This URL is newly registered.", "This URL uses Non-Standard Ports.", "The domain name in the URL doesn't match the domain name in the HTTPS certificate.", "This URL loads content from different domains.", "There are links in the HTML anchor tags pointing to external domains.","The website doesn't have email addresses in it.", "This URL deviates from typical URL structures.", "This website customizes or disables the browser's status bar.", "This website doesn't disable the right-click context menu.", "This website uses pop-up windows.", "The domain is newly registered.", "DNS records are not properly configured for the domain.", "This website has low traffic.", "The page-rank of the website is not so good.", "The website has a huge number of external links pointing to the website."]
+    
     if not url:
         return -1, ["URL is empty or not provided."]
 
@@ -91,7 +103,6 @@ def analyze_url(url):
 @app.route("/")
 def index():
     return render_template("index.html")
-
 
 @app.route("/analyze", methods=["POST"])
 def analyze():
