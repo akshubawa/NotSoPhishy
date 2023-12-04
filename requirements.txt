@@ -5,3 +5,4 @@ python-dateutil
 uvicorn[standard]
 bs4
 requests
+urllib.parse
