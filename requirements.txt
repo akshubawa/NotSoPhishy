@@ -1,4 +1,7 @@
 flask
 python-whois
-python-googlesearch
-scikit-learn==1.2.2
+scikit-learn
+python-dateutil
+uvicorn[standard]
+bs4
+requests
