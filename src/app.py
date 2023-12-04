@@ -5,7 +5,7 @@ from flask import Flask, request, render_template
 import numpy as np
 import requests
 import main as m
-app = Flask(__name__,static_folder='C:\\Users\\akshu\\Documents\\NotSoPhishy\\static',template_folder='C:\\Users\\akshu\\Documents\\NotSoPhishy\\templates')
+app = Flask(__name__,static_folder='static',template_folder='templates')
 
 def analyze_url(url):
     if url == "https://www.google.com/" or url == "https://www.youtube.com/" or url == "https://www.amazon.in/":
@@ -79,7 +79,7 @@ def analyze_url(url):
                 "The website doesn't provide a statistical report."
             ])
 
-            with open("C:\\Users\\akshu\\Documents\\NotSoPhishy\\Model\\classifier-model.pkl", 'rb') as f:
+            with open("Model\\classifier-model.pkl", 'rb') as f:
                 model = pickle.load(f)
 
             prediction = model.predict(columns)
