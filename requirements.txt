@@ -1,6 +1,6 @@
-flask
+flask==2.2.3
 python-whois
-scikit-learn
+scikit-learn==1.2.2
 python-dateutil
 uvicorn[standard]
 bs4
