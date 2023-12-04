@@ -1,5 +1,5 @@
 pip==23.3.1
-flask>=2.2.3
+flask
 python-whois
 scikit-learn==1.2.2
 python-dateutil
