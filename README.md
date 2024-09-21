@@ -34,7 +34,7 @@ Follow these steps to run the **Not So Phishy** project:
 2. Navigate to the project directory:
 
    ```bash
-   cd not-so-phishy
+   cd notSoPhishy
    ```
 
 3. Create a virtual environment (optional but recommended):
